@@ -1,2 +1,17 @@
 # listing-ingestion-pipeline
-Structured extraction, normalization, and API publication pipeline for external commerce listings. In other words a bot that grabs Ebay listings and adds them to your Shopify store.
+
+A structured ETL-style ingestion pipeline that demonstrates:
+
+External HTML extraction
+
+Data normalization and transformation
+
+Deterministic price adjustment logic
+
+Typed payload construction
+
+API publication with explicit error handling
+
+Controlled HTTP client behavior
+
+This repository is intended as an architectural example of extracting semi-structured external data and publishing it into a controlled system via a typed API client.
