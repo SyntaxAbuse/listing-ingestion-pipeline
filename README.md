@@ -16,6 +16,25 @@ Controlled HTTP client behavior
 
 This repository is intended as an architectural example of extracting semi-structured external data and publishing it into a controlled system via a typed API client.
 
+# Limitations
+This is a single-source ingestion example, not a distributed ingestion system.
+No persistent queue or retry backoff strategy (by design — kept minimal).
+
+# Example flow
+External Listing
+      ↓
+HTML Extraction
+      ↓
+Structured Listing Object
+      ↓
+Normalized + Adjusted Price
+      ↓
+Typed Shopify Product Payload
+      ↓
+Create Product
+      ↓
+Add to Collection (optional)
+
 # Overview
 
 The pipeline follows a strict separation of concerns:
@@ -87,3 +106,34 @@ Silent error swallowing
 Unbounded request loops
 
 Mixed responsibilities inside main()
+
+# Configuration
+
+All runtime configuration is handled via environment variables.
+
+# Required:
+SHOPIFY_SHOP
+SHOPIFY_TOKEN
+SOURCE_URL
+
+# Optional
+SHOPIFY_COLLECTION_ID
+PRICE_MARKUP_USD
+PRODUCT_VENDOR
+PRODUCT_TYPE
+PRODUCT_TAGS
+USER_AGENT
+
+# Design Decisions
+Using explicit structs instead of generic maps:
+
+Prevents runtime type ambiguity
+
+Ensures compile-time validation
+
+Makes the API contract explicit
+
+Improves maintainability
+
+
+
